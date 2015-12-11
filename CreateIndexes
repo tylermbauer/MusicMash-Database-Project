@@ -1,0 +1,4 @@
+Indexes 
+CREATE INDEX idx_MainAlg ON CUSTOMER_SONG(Songrating, Songtype, Songratingtime, Songskiptimes);
+CREATE INDEX idx_UsageFreq ON CUSTOMER_SONG(Songusagefrequency);
+CREATE INDEX idx_CustomerLoyalty ON SUBSCRIBER(SDuration);
