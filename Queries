@@ -1,0 +1,117 @@
+1. Most popular songs in a given month/year
+SELECT Song.SongID,
+  Song.Sname,
+  Customer_Song.SONGUSAGEFRequency
+FROM Song,
+  Customer_Song
+WHERE Song.SongID=Customer_Song.SongID
+AND Song.SongID IN
+  (SELECT SongID
+  FROM
+    (SELECT SONGID ,
+      SONGUSAGEFRequency ,
+      rank() over (order by SONGUSAGEFRequency DESC) AS rnk
+    FROM Customer_SONG
+    )
+  WHERE rnk <= 10
+   )
+AND extract(MONTH FROM ListeningTime) =
+  &ListeningMonth
+AND extract(YEAR FROM ListeningTime) =
+  &ListeningYear;
+
+2. Most popular artists in a given month/year
+SELECT Artist.ArtID,Artist.Artname,
+  Customer_Song.SONGUSAGEFRequency
+FROM Song,
+  Customer_Song, Artist
+WHERE Song.SongID=Customer_Song.SongID AND Song.ArtID = Artist.ArtID
+AND Song.SongID IN
+  (SELECT SongID
+  FROM
+    (SELECT SONGID ,
+      SONGUSAGEFRequency ,
+      rank() over (order by SONGUSAGEFRequency DESC) AS rnk
+    FROM Customer_SONG
+    )
+  WHERE rnk <= 10
+   )
+AND extract(MONTH FROM ListeningTime) =
+  &ListeningMonth
+AND extract(YEAR FROM ListeningTime) =
+  &ListeningYear;
+
+3. Songs that are skipped most often by customers
+SELECT SongID, SongSkiptimes
+  FROM
+    (SELECT SONGID ,
+      songskiptimes ,
+      rank() over (order by Songskiptimes DESC) AS rnk
+    FROM Customer_SONG
+     ) 
+  WHERE rnk <= &Howmanysongs;
+
+4. Number of days until a trial expires for each trial customer
+
+SELECT CID, SDuration, Round(senddate-sysdate) as Numberofdaystillexpiration
+  FROM dual, subscriber
+  WHERE SDuration = 'TRIAL' AND Round(senddate-sysdate) >= 0;
+
+5. An ordered list of the number of days until a subscription expires for paying customers except monthly customers
+
+ SELECT CID, SDuration, Round(senddate-sysdate) as Numberofdaystillexpiration
+  FROM dual, subscriber
+  WHERE SDuration <> 'TRIAL' AND SDuration <> '1MONTH' AND Round(senddate-sysdate) >= 0 
+  ORDER BY Numberofdaystillexpiration DESC;
+  
+
+6. Most popular categories of music by gender of the customer
+  SELECT Customer.Cgender, Customer_Song.songtype, count(Customer_Song.songtype) as Most_Popular
+FROM Customer, Customer_Song
+WHERE Customer.CID = Customer_Song.CID AND Cgender = &Gender
+GROUP BY Customer.Cgender, Customer_Song.songtype
+ORDER BY count(Customer_Song.songtype) DESC; 
+
+
+7. Most popular song by region of the country
+
+SELECT SongID, Customer_Song.Region, Max(Songusagefrequency) as Most_Popular_Song
+FROM Customer_Song
+WHERE Region = &Region 
+GROUP BY Region,Songid
+ORDER BY Most_Popular_Song DESC
+FETCH NEXT 1 ROWS ONLY;
+
+
+8. Monthly payments to record labels for purchased songs/albums.
+SELECT cust_alb, Customer_SongP.SongID, Recordlabel.RID, RecordLabel.Recname, Profitratio, cust_alb, 
+Sum(Song_Price) As Revenue, (Sum(Song_Price) *Profitratio) As Monthly_Song_Payment, (Sum(Albcost)*.02) As Monthly_Album_Payment
+FROM Song, Customer_SongP, Recordlabel, Artist, Album, Customer_Album
+WHERE Customer_SongP.SongID = Song.SongID AND Song.RID = Recordlabel.RID AND Song.ArtID = Artist.ArtID AND Album.ArtID = Artist.ArtID AND Album.Albid = Customer_Album.Albid
+AND extract(MONTH FROM PurchaseTime) = &PurchaseSongMonth AND extract(MONTH FROM PurchaseTime) = &PurchaseAlbumMonth
+GROUP BY Customer_SongP.SongID, Recordlabel.RID, Profitratio, RecordLabel.Recname, albcost, cust_alb;
+
+
+9. Monthly payment to account executives each month.
+SELECT Customer_SongP.SongID, Recordlabel.RID, AccountExec.EID, Profitratio, Sum(Song_Price) As Revenue, (Sum(Song_Price) *.02) As Monthly_Payment_to_AccountEXEC
+FROM Song, Customer_SongP, Recordlabel, AccountExec
+WHERE Customer_SongP.SongID = Song.SongID AND Song.RID = Recordlabel.RID AND Recordlabel.EID = AccountExec.EID 
+AND extract(MONTH FROM PurchaseTime) = &PurchaseMonth /* isolates calculations for the month entered and user intuitively knows month because they entered it*/
+GROUP BY Customer_SongP.SongID, Recordlabel.RID, AccountExec.EID, Profitratio;
+
+10. 
+SELECT Genre, AVG(Albcost)
+FROM ALBUM
+GROUP BY Genre;
+
+11. Average number of songs each customer listens to per day.
+
+SELECT CID, AVG(AVGPERDAY) /*Aggregates all the average songusagefrequencies per day and divides them by the total number of days */ 
+From Customer_SONG
+WHERE CID IN 
+(
+SELECT CID
+FROM Customer_Song
+WHERE ListeningTime >= ListeningTime - .5 AND ListeningTime <= ListeningTime + .5 
+Return AVG (Songusagefrequency) as AVGPERDAY /*returning the inner query for the average for each day, now we will add those avgperday together and divide them by total to get total avg per day */
+);
