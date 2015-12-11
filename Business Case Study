@@ -1,0 +1,392 @@
+MusicMash
+MusicMash is a startup business specializing in online music streaming. After receiving initial funding from investors, the founders of MusicMash are ready to start developing their online business. The owners are University of Arizona MIS graduates and know that the success of the business will depend on efficient and thorough data management. This means that the database behind MusicMash must be well designed. Before programmers can start developing the front-end website and apps, the database must be designed and created.
+The competitive nature of online music streaming makes customer satisfaction a particularly high-priority item. Therefore, an advanced music recommendation system is a major business focus. In order for MusicMash’s programmers to employ advanced recommendation algorithms, information about customer’s music choices, likes and dislikes, and usage frequency must be available. A key feature of MusicMash’s business model is to be able to recommend music based on different times of the day. For example, does a particular customer prefer to listen to mellow music in the morning and fast pace music at night? It’s essential that this information as well as other information related to customer preferences is captured. In order to find the best database solution possible, the founders of MusicMash have challenged current MIS students to come up with the best database possible. The team with the best solution is likely to be well rewarded.  Of course, good design must be accompanied by great documentation and a fantastic implementation!
+MusicMash’s Company Objectives	
+The company’s stated objectives are:
+To have sustainable sales growth.  This objective requires designing MusicMash’s operations to foster customer loyalty and to attract new customers by:
+Maintaining an inventory of up-to-date music.
+Maintaining an advanced music recommendation system.
+Offering discount pricing to loyal customers.
+Maintaining customer contact through regular emails
+
+To reduce the upfront cost paid to record labels by:
+Offering yearly bonus payments to record labels if their music gets played most often
+Providing demographic information on customers who listen to their music.
+Allowing customers to purchase and download music (A portion of the profits go directly to the record label)
+
+The Business Environment
+MusicMash anticipates having 100,000 customers after the first year of operation. This number is expected to grow by 20% for the first three years and then drop to a sustained 8% in the following years. MusicMash needs to track as much information about customers as possible, including name, address, age, email address, credit card number, and sign-up date. Customers include people who are paid subscribers and those who have signed up for a 30 day free trial. Obviously, MusicMash must carefully track who has paid for the service and when 30 day trials have expired.
+
+Most competitors in the online music streaming market have at least 1 million songs in their inventory provided by roughly 100 record labels. MusicMash knows it needs to have a similar sized music inventory to stay competitive. The music inventory is expected to grow by 5% each year. Therefore, it must be easy to add additional songs and artists. 
+
+Each year, MusicMash pays record labels for the right to stream songs. In order to keep costs down, MusicMash wants to drop songs from their inventory that are not well received by customers. This will be done by analyzing songs skipped by customers and by a 5 point rating system. The rating system will also be used to recommend other songs and artists.
+
+For each song that is purchased by a customer, a percentage of the profit will be given to the record label. The exact percentage is determined when contracts are initially negotiated. The percentage is specific to the record label, not each song. The distribution of payments to record labels will take place on a monthly basis.
+
+Anticipated Operations
+
+A customer signs up to use the service by entering their name, address, age, email address, and credit card number. The customer then selects a renewal option for the service. Renewals periods are as follows: monthly, bi-yearly, yearly, and a three year membership. The longer the renewal period, the cheaper the cost for the customer. Monthly subscriptions are automatically renewed. Customers using the other subscription periods received a notice before their subscription ends. Customers using the 30 trial do not enter a credit card number during signup.
+
+Upon completing the signup process, the customer will enter a song, musician, or genre that they would like to listen to. This process will create a “station”. MusicMash will stream music associated with the station. Customers can create many stations.
+
+While the music is streaming, customers can skip, rate, and/or purchase songs. They will also have the option to purchase an entire album. Purchasing an entire album is cheaper than purchasing songs on the album individually.
+
+Every action (e.g. skips, ratings, purchases) that a customer performs on the website is tracked as well as the time of day the action occurred. This data is fed into recommendation algorithms.
+
+While a song is being played, information about the song (song name, artist, album, release date) is displayed to the user. The individual song price and the album price is also displayed.
+
+Paying customers have a one-click process when purchasing music. The stored credit card number is charged and a receipt is emailed to them. 30 trial users must enter their credit card information each time that they want to purchase a song or album. MusicMash tracks every songs/albums that are purchased.
+
+Before MusicMash can legally stream music, they must pay record labels for the rights to use the music. To reduce the upfront cost of music, MusicMash distributes the profit made on music sales back to the record label. The exact percentage of the profits is negotiated, therefore varies depending on the record label. No two record labels own the same music or contracts with the same artist.
+
+MusicMash employs account executives who deal directly with the record labels. A record label deals with only one account executive, but an account executive can manage many contracts. 
+
+Each month MusicMash determines what songs/albums were purchased and how much money should be paid to each record label. The payment is automatically transferred to the record label’s bank account. At the end of each year, record labels with the most popular music are rewarded with a bonus payment.
+
+Issues that Need to be Addressed
+For the business to run smoothly, MusicMash must carefully track customers, payments, songs, aritists, music preferences, and record label information. The founders are hoping that your team can develop a database to meet their needs. The more of these needs that can be addressed, the better.
+
+Need 1
+Insight about each customer is extremely important to track. This tracking should begin at signup and continue each time a customer uses MusicMash. A thorough history of song likes/dislikes, skips, and purchases must be available. Customer demographic information is also key to the recommendation algorithms. 
+
+Need 2
+Customer using the 30 day trial must be blocked from using the service when their trial expires. However, the marketing department wants to send promotional emails to trial customers starting 1 week prior to the end of their service. It’s essential that reports can be easily generated to determine what trial customers should start receiving promotional emails.
+
+Need 3
+As mentioned previously, a key feature of the recommendation algorithm is based on the time of day that a customer listens to different types of music. For now, MusicMash is only concerned with genres of music. They will need to determine if a specific genre is more popular in the morning or the afternoon for a specific customer. 
+
+Need 4
+Similar to Need 2, MusicMash must be able to determine if paying customers should receive notices about their subscriptions expiring. Those signed up for the monthly subscription do not need to receive notices, since their subscription will automatically renew. 
+
+Need 5
+For the purposes of optimizing the music inventory and reducing costs, MusicMash must be able to determine overall ratings of songs and if songs are frequently skipped by customers. The overall performance of artists should also be available. This will help to determine what songs should be removed from the inventory, as well as, rewarding record labels with popular songs/artists. 
+
+Need 6
+To incentivize customers to purchase music, customers who purchase $100 of music in a one year time period will receive a $20 gift card. Therefore, MusicMash must carefully track the purchase history of customers. 
+
+
+
+Need 7
+MusicMash must properly disburse the correct payments to record labels each mouth for purchased music. This needs to be done by calculating the total sales for songs sold by each record label and then distributing the appropriate payment to the record label based on the negotiated rate. 
+
+Need 8
+MusicMash’s account executives receive a 2% commission on song sales for the record label accounts that they manage. The 2% commission is based on the portion of profits that MusicMash receives from music sales. For example, if the songs managed by Universal Music Group have total sales of $1,000 for a one month period, and the negotiated profit split is 60% ($600) for MusicMash and 40% ($400) for Universal Music Group, then the account execute would receive 2% of $600. MusicMash must be able to easily calculate the amount that should be given to account executives each month. 
+
+Querying Capability
+
+MusicMash wants to make sure that (at a minimum) the following queries can be run easily:
+Most popular songs in a given month/year
+Most popular artists in a given month/year
+Songs that are skipped most often by customers
+Number of days until a trial expires for each trial customer
+An ordered list of the number of days until a subscription expires for paying customers except monthly customers
+Most popular categories of music by gender of the customer
+Most popular song by region of the country
+Monthly payments to record labels for purchased songs/albums.
+Monthly payment to account executives each month.
+Average price of music albums based on genre.
+Average number of songs each customer listens to per day.
+MusicMash is very happy to work with each team as they move forward.  After reading this request, and learning a bit more about the situation, you are likely to have questions.  Please prepare a list of questions to ask the founders of MusicMash. It is very important for you to be sure you understand the requirements and are able to capture them accurately.  Feel free to offer suggestions that come from your knowledge of other online music streaming companies.  There might be some interesting ideas on the Web that could help us have a database that supports the operational goals, help build quality relationships with our customers and record labels, and sets the company up nicely for the future.  As you think about the data needs that MusicMash has, do not be afraid to think outside the box when designing solutions.
+
+
+Sample Reports:
+
+Song Rating and Skips by Album and Artist
+ 
+ 
+ 
+Artist
+Albums
+Songs
+# Times Played
+Rating
+Skips
+Beatles
+Yellow Submarine
+Yellow Submarine
+814
+2
+171
+ 
+
+
+Only A Northern Song
+80
+0
+52
+ 
+
+
+All Together Now
+673
+3
+159
+ 
+
+
+Hey Bulldog
+428
+1
+39
+ 
+
+
+It's All Too Much
+485
+3
+95
+ 
+
+
+All You Need Is Love
+617
+4
+162
+ 
+
+
+Pepperland
+935
+4
+124
+ 
+
+
+Sea Of Time
+239
+1
+137
+ 
+
+
+Sea Of Holes
+269
+4
+115
+ 
+
+
+Sea Of Monsters
+516
+3
+137
+ 
+
+
+March Of The Meanies
+784
+5
+65
+ 
+
+
+Pepperland Laid Waste
+874
+3
+12
+ 
+
+
+Yellow Submarine In Pepperland
+832
+2
+169
+ 
+Abbey Road
+Come Together
+855
+4
+12
+ 
+
+
+Something
+82
+2
+20
+ 
+
+
+Maxwell's Silver Hammer
+807
+1
+102
+ 
+
+
+Oh! Darling
+274
+3
+181
+ 
+
+
+Octopus's Garden
+203
+5
+20
+ 
+
+
+I Want You
+591
+0
+10
+ 
+
+
+Here Comes The Sun
+993
+0
+85
+ 
+
+
+Because
+241
+4
+165
+ 
+
+
+You Never Give Me Your Money
+589
+3
+17
+ 
+
+
+Sun King
+229
+5
+30
+ 
+
+
+Mean Mr. Mustard
+217
+0
+67
+ 
+
+
+Polythene Pam
+817
+5
+166
+ 
+
+
+She Came In Through The Bathroom Window
+369
+5
+97
+ 
+
+
+Golden Slumbers
+991
+1
+102
+ 
+
+
+Carry That Weight
+312
+5
+145
+ 
+
+
+The End
+276
+4
+171
+ 
+ 
+Her Majesty
+319
+3
+90
+
+
+
+Account Executive Monthly Commision
+ 
+ 
+ 
+ 
+Employee
+Record Label
+Monthly Sales
+Sales Amount
+ 
+Commission
+Danny Matt
+785
+31-Jan-15
+$15,598.00 
+
+
+$155.98 
+
+
+987
+28-Feb-15
+$20,567.00 
+
+
+$205.67 
+
+
+1105
+31-Mar-15
+$11,150.00 
+
+
+$111.50 
+
+
+
+
+Sub total
+$47,315.00 
+
+
+$473.15 
+ 
+ 
+ 
+ 
+ 
+ 
+Paul Rains
+1122
+31-Jan-15
+$18,570.00 
+
+
+$584.65 
+
+
+1128
+28-Feb-15
+$12,987.00 
+
+
+$1,057.80 
+
+
+1133
+31-Mar-15
+$9,654.00 
+
+
+$1,642.45 
+ 
+ 
+Sub total
+$41,211.00 
+ 
+$3,284.90 
+
